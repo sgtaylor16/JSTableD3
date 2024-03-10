@@ -16,7 +16,7 @@
     </head>
     <body> 
         <h1>My Table</h1>
-        <input type="text" id="filterText" oninput="updateTable(this.value,tableRows)">
+        <input type="text" id="filterText" oninput="updateTable(this.value,'#tableInsert',tableRows,['fn','pn'])">
         <div id="tableInsert"></div>
 
 
@@ -65,19 +65,9 @@
         }
       ]
         
-        function filterRows(filterString,table){
-            let newtable = table.filter((d) =>{
-                return d.fn.includes(filterString)
-            })
-
-            return newtable
-        }
-
       mytabulate('#tableInsert',tableRows,['fn','pn']);
 
-      function updateTable(filterString,tableRows,tag){
 
-      }
     </script>
     </body>
 </html>

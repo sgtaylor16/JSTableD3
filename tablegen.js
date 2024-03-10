@@ -26,3 +26,29 @@ function mytabulate(id,data, columns) {
 
   //return table;
 }
+
+function filterRows(filterString,table){
+	let newtable = table.filter((d) =>{
+		return d.fn.includes(filterString)
+	})
+	return newtable
+}
+
+function updateTable(filterString,tabletag,tableData,columns){
+	let newdata = filterRows(filterString,tableData)
+
+	let tbody = d3.select(tabletag).select("tbody");
+
+	tbody.selectAll("tr")
+		.data(newdata)
+		.join("tr")
+		.selectAll("td")
+		.data(row => {
+			return columns.map((column)=>{
+				return {column: column, value: row[column]};
+			});
+		})
+		.join('td')
+		  .text(d=>d.value);
+
+}
