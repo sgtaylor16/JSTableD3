@@ -23,21 +23,22 @@ function mytabulate(id,data, columns) {
 		})
 		.join('td')
 		  .text(d=>d.value);
-
-  //return table;
 }
 
-function filterRows(filterString,table){
-	let newtable = table.filter((d) =>{
-		return d.fn.includes(filterString)
+function filterRows(filterString,table,filtercolumns){
+	let newtable;
+	filtercolumns.forEach((column) =>{
+		newtable = table.filter((d) =>{
+			return d[column].includes(filterString)
+		})
 	})
 	return newtable
 }
 
-function updateTable(filterString,tabletag,tableData,columns){
-	let newdata = filterRows(filterString,tableData)
+function updateTable(filterString,id,tableData,columns,filtercolumns){
+	let newdata = filterRows(filterString,tableData,filtercolumns)
 
-	let tbody = d3.select(tabletag).select("tbody");
+	let tbody = d3.select(id).select("tbody");
 
 	tbody.selectAll("tr")
 		.data(newdata)
