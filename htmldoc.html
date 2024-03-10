@@ -10,13 +10,13 @@
         <title>HTML Tables with D3</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7" charset="utf-8"></script>
         <script src="tablegen.js"></script>
 
     </head>
     <body> 
         <h1>My Table</h1>
-        <input type="text" id="filterText" oninput="updateTable(this.value,tableRows)">
+        <input type="text" id="filterText" oninput="updateTable(this.value,'#tableInsert',tableRows,['fn','pn'])">
         <div id="tableInsert"></div>
 
 
@@ -65,19 +65,9 @@
         }
       ]
         
-        function filterRows(filterString,table){
-            let newtable = table.filter((d) =>{
-                return d.fn.includes(filterString)
-            })
-
-            return newtable
-        }
-
       mytabulate('#tableInsert',tableRows,['fn','pn']);
 
-      function updateTable(filterString,tableRows,tag){
 
-      }
     </script>
     </body>
 </html>
