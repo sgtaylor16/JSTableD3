@@ -9,17 +9,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>HTML Tables with D3</title>
         <meta name="description" content="">
+        <style>
+          table {
+            border-collapse: collapse;
+            width: 60%;
+          }
+          th,
+          td {
+            text-align: left;
+            padding: 10px;
+          }
+          tr:nth-child(even) {
+            background-color: #c4cdcb;
+          }
+          tr:nth-child(odd) {
+            background-color: #a7b3b3;
+          }
+        </style>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.jsdelivr.net/npm/d3@7" charset="utf-8"></script>
         <script src="tablegen.js"></script>
-
     </head>
     <body> 
         <h1>My Table</h1>
         <input type="text" id="filterText" oninput="updateTable(this.value,'#tableInsert',tableRows,['fn','pn'])">
         <div id="tableInsert"></div>
-
-
 
     <script>
         const tableRows = [
@@ -66,8 +80,6 @@
       ]
         
       mytabulate('#tableInsert',tableRows,['fn','pn']);
-
-
     </script>
     </body>
 </html>
