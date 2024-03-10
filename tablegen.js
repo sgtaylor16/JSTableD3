@@ -11,21 +11,18 @@ function mytabulate(id,data, columns) {
 	  .append('th')
 	    .text(function (column) { return column; });
 
-	// create a row for each object in the data
-	var rows = tbody.selectAll('tr')
-	  .data(data)
-	  .enter()
-	  .append('tr');
 
-	// create a cell in each row for each column
-	var cells = rows.selectAll('td')
-	  .data(function (row) {
-	    return columns.map(function (column) {
-	      return {column: column, value: row[column]};
-	    });
-	  })
-	  .enter()
-	  .append('td')
-	    .text(function (d) { return d.value; });
+	tbody.selectAll("tr")
+		.data(data)
+		.join("tr")
+		.selectAll("td")
+		.data(row => {
+			return columns.map((column)=>{
+				return {column: column, value: row[column]};
+			});
+		})
+		.join('td')
+		  .text(d=>d.value);
+
   //return table;
 }
