@@ -6,10 +6,10 @@ function mytabulate(id,data, columns) {
 	var	tbody = table.append('tbody');
 	// append the header row
 	thead.append('tr')
-	  .selectAll('th')
-	  .data(columns).enter()
-	  .append('th')
-	    .text(function (column) { return column; });
+	 	.selectAll('th')
+		.data(columns).enter()
+	  	.append('th')
+		.text(function (column) { return column; });
 
 
 	tbody.selectAll("tr")
@@ -51,5 +51,29 @@ function updateTable(filterString,id,tableData,columns,filtercolumns){
 		})
 		.join('td')
 		  .text(d=>d.value);
-
 }
+
+function readtable(tableid){
+    ///Function to read in a html table 
+    let mytable = document.getElementById(tableid);
+    let objlist = [];
+    let headerlist = [];
+    //Get Table Header names
+    const thead = mytable.querySelector('thead').querySelector('tr').querySelectorAll('td');
+    thead.forEach(td => {
+        headerlist.push(td.innerText);
+    })
+    const tbody = mytable.querySelector('tbody');
+    let rows = tbody.querySelectorAll('tr');
+    rows.forEach((d) => {
+        let rowob = {};
+        let tds = d.querySelectorAll('td');
+            tds.forEach((d2,i2) =>{ 
+            rowob[headerlist[i2]] = d2.innerText;
+            });
+            objlist.push(rowob);
+    })
+    return objlist;
+}
+
+export {mytabulate,updateTable,readtable};
