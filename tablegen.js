@@ -1,7 +1,10 @@
-function mytabulate(id,data, columns) {
+function mytabulate(tableid,data, columns) {
+	//tableid: id of the table to be created, include the # symbol
+	//data: data to be displayed in the table. Should be an array of objects
+	//columns: column names to be displayed in the table. Should be an array of strings
     //Code from https://gist.github.com/jfreels/6733593
 
-	var table = d3.select(id).append('table')
+	var table = d3.select(tableid).append('table')
 	var thead = table.append('thead')
 	var	tbody = table.append('tbody');
 	// append the header row
